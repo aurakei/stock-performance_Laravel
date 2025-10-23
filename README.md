@@ -1,61 +1,137 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Stock Performers – Laravel Backend
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a **Laravel-based stock performance tracker**.  
+It allows users to **log in, upload stock price data (CSV)**, and view a **chart of the top 5 best-performing stocks** based on price gain over time.
 
-## About Laravel
+Built using:
+- 🐘 **Laravel 12 (PHP 8.3)**
+- 🐳 **Docker & Docker Compose**
+- 🐘 **PostgreSQL 16**
+- 📊 **Chart.js**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+✅ User authentication (login & registration)  
+✅ CSV upload for stock price data  
+✅ PostgreSQL database for storing stocks and uploads  
+✅ Chart visualization of top 5 performers  
+✅ Fully containerized using Docker  
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Project Structure
+```
+backend/
+├── app/ # Laravel application code
+├── bootstrap/
+├── config/
+├── database/ # Migrations and seeders
+├── public/
+├── resources/ # Blade templates, CSS, JS
+├── routes/ # Web routes (web.php)
+├── storage/
+├── Dockerfile
+├── docker-compose.yml
+├── composer.json
+└── .env
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+##  Running the Project with Docker
 
-## Laravel Sponsors
+### 1️⃣ Prerequisites
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Make sure you have installed:
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Git](https://git-scm.com/)
+- [Composer](https://getcomposer.org/) *(optional, for local PHP commands)*
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2️⃣ Clone the Repository
 
-## Contributing
+```bash
+git clone https://github.com/<your-username>/stock-performers-backend.git
+cd stock-performers-backend
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3️⃣ Create a .env File
 
-## Code of Conduct
+Create a .env file in the project root (if not already present):
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+APP_NAME="Stock Performers"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
 
-## Security Vulnerabilities
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+DB_CONNECTION=pgsql
+DB_HOST=db
+DB_PORT=5432
+DB_DATABASE=stockdb
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
 
-## License
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 4️⃣ Build and Start Docker Containers
+
+Run the following command from the project root:
+
+```
+docker-compose up --build
+```
+This will:
+
+Build the Laravel app image
+
+Start the app container (laravel_app)
+
+Start the PostgreSQL container (postgres_db)
+
+### 5️⃣ Run Migrations and Generate App Key
+
+After containers are running:
+```
+docker exec -it laravel_app php artisan key:generate
+docker exec -it laravel_app php artisan migrate
+```
+
+This creates the necessary tables and generates the Laravel encryption key.
+
+### 6️⃣ Access the Application
+
+Once running, open:
+
+👉 http://localhost:8000
+
+You should see the Laravel login page or dashboard after authentication.
+
+## How the Chart Works
+
+When you upload a CSV, each record (stock name, price, and date) is stored in the PostgreSQL database.
+Laravel then:
+
+Groups the data by stock name
+
+Calculates the percentage or price gain from the first to the last entry
+
+Sorts the stocks by their gain
+
+Sends the top 5 results to the Blade view
+
+The Blade template uses Chart.js to render a beautiful bar graph from that data.
