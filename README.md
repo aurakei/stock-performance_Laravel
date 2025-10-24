@@ -143,3 +143,12 @@ Sorts the stocks by their gain
 Sends the top 5 results to the Blade view
 
 The Blade template uses Chart.js to render a beautiful bar graph from that data.
+
+### Expexted Results. 
+
+<img width="1918" height="598" alt="Screenshot 2025-10-24 141606" src="https://github.com/user-attachments/assets/d8318c06-a3d8-4136-a62c-18344aa0c50d" />
+
+<img width="1918" height="787" alt="Screenshot 2025-10-24 141640" src="https://github.com/user-attachments/assets/ce9701d1-043d-48ee-aa62-4962fb124fac" />
+
+<img width="1897" height="898" alt="Screenshot 2025-10-24 142050" src="https://github.com/user-attachments/assets/62f85c0b-0181-4155-9fe7-3581174fa588" />
+
