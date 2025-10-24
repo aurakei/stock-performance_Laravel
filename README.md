@@ -103,6 +103,14 @@ Start the app container (laravel_app)
 
 Start the PostgreSQL container (postgres_db)
 
+Run the following command from the project root:
+
+```
+docker compose run --rm app composer install
+```
+
+This will install composer on the doeckerized application.
+
 ### 5️⃣ Run Migrations and Generate App Key
 
 After containers are running:
