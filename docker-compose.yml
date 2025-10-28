@@ -32,6 +32,13 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
+  node:
+    image: node:18
+    container_name: node_builder
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    command: bash -c "npm install && npm run build"
+    
 volumes:
   postgres_data:
