@@ -152,3 +152,10 @@ The Blade template uses Chart.js to render a beautiful bar graph from that data.
 
 <img width="1897" height="898" alt="Screenshot 2025-10-24 142050" src="https://github.com/user-attachments/assets/62f85c0b-0181-4155-9fe7-3581174fa588" />
 
+### Troubleshooting
+
+Error: Failed to open stream: No such file or directory /vendor/autoload.php
+➡ Run ``` docker-compose exec app composer install ```
+
+Error: relation "sessions" does not exist
+➡ Run ``` docker-compose exec app php artisan migrate ```
