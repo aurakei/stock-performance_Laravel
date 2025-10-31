@@ -24,7 +24,7 @@
         @csrf
         <div>
             <label class="block text-gray-700 font-medium mb-2" for="file">CSV File</label>
-            <input type="file" name="file" id="file" accept=".csv" class="block w-full text-gray-700 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <input type="file" name="csv" id="csv" accept=".csv" class="block w-full text-gray-700 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
         </div>
 
         <div class="flex justify-center">

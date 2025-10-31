@@ -31,6 +31,12 @@ class StockController extends Controller
     $csv = array_map('str_getcsv', file($path));
     $header = array_map('strtolower', $csv[0]);
 
+    // to be removed after debugging
+    // dd($header, $csv[1] ?? null);
+
+    logger('CSV header:', $header);
+    logger('CSV first row:', $csv[1] ?? []);
+
     $upload = Upload::create(['filename' => $file->getClientOriginalName()]);
 
     foreach (array_slice($csv, 1) as $row) {

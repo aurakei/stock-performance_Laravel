@@ -17,14 +17,14 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="/uploads" class="btn btn-primary">Upload More Data</a>
+        <a href="/upload" class="btn btn-primary">Upload More Data</a>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const labels = {!! json_encode($labels) !!};
-    const data = {!! json_encode($data) !!};
+    var labels = JSON.parse('@json($labels)');
+    var data = JSON.parse('@json($data)');
 
     new Chart(document.getElementById('performersChart'), {
         type: 'bar',
@@ -58,7 +58,7 @@
                     beginAtZero: true,
                     ticks: {
                         callback: function(value) {
-                            return '$' + value.toFixed(2);
+                            return 'Kes' + value.toFixed(2);
                         }
                     }
                 }
