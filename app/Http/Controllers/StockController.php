@@ -77,4 +77,11 @@ class StockController extends Controller
 
         return view('top-performers', compact('labels', 'data'));
     }
+    
+    // list of the uploads done.
+    public function listUploads()
+    {
+        $uploads = Upload::withCount('stockPrices')->orderBy('created_at', 'desc')->get();
+        return view('uploads-list', compact('uploads'));
+    }
 }

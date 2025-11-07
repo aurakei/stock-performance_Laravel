@@ -30,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/upload', [StockController::class, 'upload'])->name('upload.submit');
 
     Route::get('/top-performers', [StockController::class, 'topPerformers'])->name('top.performers');
+    Route::get('/uploads-list', [StockController::class, 'listUploads'])->name('uploads.list');
+
 });
 
 require __DIR__.'/auth.php';
